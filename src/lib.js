@@ -112,7 +112,7 @@ class Migrator {
    * @param migrationName
    * @param direction
    */
-  async run(direction = 'up', migrationName) {
+  async run(direction = 'up', migrationName, ...args) {
     await this.sync();
 
     if (direction !== 'up' && direction !== 'down') {
@@ -173,7 +173,8 @@ class Migrator {
             function callback(err) {
               if (err) return reject(err);
               resolve();
-            }
+            },
+            ...args
           );
 
           if (callPromise && typeof callPromise.then === 'function') {
