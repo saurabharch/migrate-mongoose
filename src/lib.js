@@ -63,6 +63,7 @@ class Migrator {
    */
   setMongooseConnection(connection) {
     this.migrationModel = MigrationModelFactory(this.collection, connection)
+    return this
   }
 
   /**
